@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using TaskList.Data.Contexts;
 using TaskList.Data.DAL.Interfaces;
 using TaskList.Data.Models;
 
@@ -104,7 +101,7 @@ namespace TaskList.API.Controllers
                 return StatusCode(500);
 
             Folder updated = _dao.Update(id, modifiedFolder);
-            
+
             return updated != null ? Ok(updated) : StatusCode(500); //if delete is successful, return NoContent, otherwise 500 internal server error
         }
     }

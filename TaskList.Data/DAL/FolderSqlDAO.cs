@@ -61,7 +61,7 @@ namespace TaskList.Data.DAL
                 };
                 cmd.Parameters.AddWithValue("@id", id);
 
-                int rowsAffected = (int)cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
 
                 return rowsAffected == 1;
             }
@@ -141,10 +141,12 @@ namespace TaskList.Data.DAL
         {
             List<Folder> fList = new();
             Dictionary<(int id, string name), List<Task>> fDict = new();
-            
+
             while (reader.Read())
             {
-                (int id, string name) key = (reader.GetFieldValue<int>("FolderId"), reader.GetFieldValue<string>("FolderName"));
+                (int id, string name) key =
+                    (reader.GetFieldValue<int>("FolderId"),
+                     reader.GetFieldValue<string>("FolderName"));
 
                 if (!fDict.ContainsKey(key))
                 {
@@ -172,7 +174,7 @@ namespace TaskList.Data.DAL
 
                     fDict[key].Add(t);
                 }
-            }                       
+            }
 
             foreach (KeyValuePair<(int id, string name), List<Task>> kvp in fDict)
             {
@@ -197,7 +199,8 @@ namespace TaskList.Data.DAL
 
             while (reader.Read())
             {
-                key = (reader.GetFieldValue<int>("FolderId"), reader.GetFieldValue<string>("FolderName"));
+                key = (reader.GetFieldValue<int>("FolderId"),
+                    reader.GetFieldValue<string>("FolderName"));
 
                 if (!fDict.ContainsKey(key))
                 {
@@ -226,10 +229,10 @@ namespace TaskList.Data.DAL
                     fDict[key].Add(t);
                 }
             }
-            
+
             f.Id = key.id;
             f.FolderName = key.name;
-            f.Tasks = fDict[key];            
+            f.Tasks = fDict[key];
 
             return f;
         }

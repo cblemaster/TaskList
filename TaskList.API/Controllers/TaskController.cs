@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TaskList.Data.Contexts;
 using TaskList.Data.DAL.Interfaces;
-using TaskList.Data.Models;
 using Task = TaskList.Data.Models.Task;
 
 namespace TaskList.API.Controllers
@@ -85,7 +82,7 @@ namespace TaskList.API.Controllers
             IActionResult result = BadRequest();
 
             Task created = _dao.Create(newTask);
-            
+
             if (created != null && created.Id > 0)
                 result = Created("Task/" + created.Id, created);
 
@@ -97,7 +94,7 @@ namespace TaskList.API.Controllers
         public IActionResult Delete(int id)
         {
             Task deleted = _dao.GetById(id);
-                
+
             if (deleted == null)
                 return NotFound("Task not found");
 
@@ -116,7 +113,7 @@ namespace TaskList.API.Controllers
                 return NotFound("Task not found");
 
             Task updated = _dao.Update(id, modifiedTask);
-            
+
             return updated != null ? Ok(updated) : StatusCode(500); //if delete is successful, return NoContent, otherwise 500 internal server error
         }
     }

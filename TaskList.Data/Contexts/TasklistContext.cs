@@ -70,11 +70,11 @@ public partial class TasklistContext : DbContext
         string currentDirectory = Environment.CurrentDirectory;
         string configFileName = "appsettings.json";
         string fullPathToConfigFile = Path.Combine(currentDirectory, @"..\TaskList.Data", configFileName);
-                
+
         IConfigurationRoot builder = new ConfigurationBuilder()
             .AddJsonFile(fullPathToConfigFile, optional: false)
             .Build();
 
-        return builder.GetConnectionString("Project") ?? string.Empty;        
+        return builder.GetConnectionString("Project") ?? string.Empty;
     }
 }

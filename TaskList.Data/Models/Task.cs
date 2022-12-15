@@ -18,5 +18,5 @@ public partial class Task
 
     public string? Note { get; set; }
 
-    public virtual Folder Folder { get; set; } = null!;
+    public Folder Folder { get; set; } = null!;
 }

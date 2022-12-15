@@ -20,7 +20,7 @@ namespace TaskList.Data.DAL
             try
             {
                 int newId = -1;
-                
+
                 using SqlConnection conn = new(connectionString);
                 conn.Open();
 
@@ -29,12 +29,16 @@ namespace TaskList.Data.DAL
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.AddWithValue("@taskName", newTask.TaskName);
-                cmd.Parameters.AddWithValue("@dueDate", newTask.DueDate == null ? DBNull.Value : newTask.DueDate);
+                cmd.Parameters.AddWithValue("@dueDate", newTask.DueDate == null
+                                                               ? DBNull.Value
+                                                               : newTask.DueDate);
                 cmd.Parameters.AddWithValue("@recurrenceId", newTask.RecurrenceId);
                 cmd.Parameters.AddWithValue("@isImportant", newTask.IsImportant);
                 cmd.Parameters.AddWithValue("@isComplete", newTask.IsComplete);
                 cmd.Parameters.AddWithValue("@folderId", newTask.FolderId);
-                cmd.Parameters.AddWithValue("@note", newTask.Note == null ? DBNull.Value : newTask.Note);
+                cmd.Parameters.AddWithValue("@note", newTask.Note == null
+                                                            ? DBNull.Value
+                                                            : newTask.Note);
                 cmd.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@taskId",
@@ -44,13 +48,13 @@ namespace TaskList.Data.DAL
                     Direction = ParameterDirection.Output
                 });
 
-                int rowsAffected = (int)cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
 
                 newId = (int)cmd.Parameters["@taskId"].Value;
 
                 return GetById(newId);
             }
-            catch (SqlException) {throw;}
+            catch (SqlException) { throw; }
         }
 
         public bool Delete(int id)
@@ -66,7 +70,7 @@ namespace TaskList.Data.DAL
                 };
                 cmd.Parameters.AddWithValue("@id", id);
 
-                int rowsAffected = (int)cmd.ExecuteNonQuery();
+                int rowsAffected = cmd.ExecuteNonQuery();
 
                 return rowsAffected == 1;
             }
@@ -76,7 +80,7 @@ namespace TaskList.Data.DAL
         public Task GetById(int id)
         {
             Task t = null!;
-            
+
             try
             {
                 using SqlConnection conn = new(connectionString);
@@ -92,7 +96,7 @@ namespace TaskList.Data.DAL
                 if (reader.HasRows && reader.Read())
                 {
                     t = GetTaskFromReader(reader);
-                }                
+                }
             }
             catch (SqlException) { throw; }
 
@@ -112,7 +116,7 @@ namespace TaskList.Data.DAL
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -238,12 +242,16 @@ namespace TaskList.Data.DAL
                 };
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@taskName", modifiedTask.TaskName);
-                cmd.Parameters.AddWithValue("@dueDate", modifiedTask.DueDate);
+                cmd.Parameters.AddWithValue("@dueDate", modifiedTask.DueDate == null
+                                                                    ? DBNull.Value
+                                                                    : modifiedTask.DueDate);
                 cmd.Parameters.AddWithValue("@recurrenceId", modifiedTask.RecurrenceId);
                 cmd.Parameters.AddWithValue("@isImportant", modifiedTask.IsImportant);
                 cmd.Parameters.AddWithValue("@isComplete", modifiedTask.IsComplete);
                 cmd.Parameters.AddWithValue("@folderId", modifiedTask.FolderId);
-                cmd.Parameters.AddWithValue("@note", modifiedTask.Note);
+                cmd.Parameters.AddWithValue("@note", modifiedTask.Note == null
+                                                                 ? DBNull.Value
+                                                                 : modifiedTask.Note);
 
                 cmd.ExecuteNonQuery();
 

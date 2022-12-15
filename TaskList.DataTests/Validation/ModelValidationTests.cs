@@ -1,5 +1,4 @@
-﻿using TaskList.Data.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TaskList.Data.Validation.Tests
 {

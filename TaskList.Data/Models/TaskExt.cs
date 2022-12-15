@@ -1,6 +1,4 @@
-﻿using TaskList.Data.Validation;
-
-namespace TaskList.Data.Models
+﻿namespace TaskList.Data.Models
 {
     public partial class Task
     {
