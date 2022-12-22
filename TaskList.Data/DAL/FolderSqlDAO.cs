@@ -45,7 +45,7 @@ namespace TaskList.Data.DAL
 
                 return GetById(newId);
             }
-            catch (SqlException) { throw; }
+            catch (SqlException) { throw; }  //TODO: Exception handling? Custom exceptions?
         }
 
         public bool Delete(int id)
