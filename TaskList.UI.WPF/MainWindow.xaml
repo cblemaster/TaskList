@@ -29,7 +29,13 @@
                                 <DataTemplate>
                                     <Button Content="Rename" x:Name="btnRenameFolder" Click="btnRenameFolder_Click" 
                                             Background="Transparent" Foreground="CornflowerBlue" BorderThickness="0"
-                                            Visibility="Collapsed" />
+                                            Visibility="Visible" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, 
+                                            AncestorType={x:Type ListViewItem}}}" Value="True">
+                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -38,7 +44,13 @@
                                 <DataTemplate>
                                     <Button Content="Delete" x:Name="btnDeleteFolder" Click="btnDeleteFolder_Click" 
                                             Background="Transparent" Foreground="CornflowerBlue" BorderThickness="0"
-                                            Visibility="Collapsed" />
+                                            Visibility="Visible" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, 
+                                            AncestorType={x:Type ListViewItem}}}" Value="True">
+                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -81,7 +93,7 @@
                         <CheckBox x:Name="cbImportant" IsEnabled="False" Padding="5 5 5 5" VerticalContentAlignment="Center" Height="30" />
                         <CheckBox x:Name="cbComplete" IsEnabled="False" Padding="5 5 5 5" VerticalContentAlignment="Center" Height="30" />
                         <TextBlock x:Name="tbNote" Padding="5 5 5 5" Height="30" />
-                    </StackPanel>                  
+                    </StackPanel>
                 </Grid>
             </Border>
             <Button x:Name="btnAddFolder" Click="btnAddFolder_Click" Content="Add Folder" Background="Transparent" 

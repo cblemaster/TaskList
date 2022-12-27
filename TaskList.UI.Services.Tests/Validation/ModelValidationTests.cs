@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TaskList.UI.Services.Validation;
 
-namespace TaskList.Data.Validation.Tests
+namespace TaskList.UI.Services.Tests
 {
     [TestClass()]
     public class ModelValidationTests

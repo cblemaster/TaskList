@@ -1,8 +1,7 @@
-﻿using TaskList.Data.Contexts;
-using TaskList.Data.Models;
-using Task = TaskList.Data.Models.Task;
+﻿using TaskList.UI.Services.Models;
+using Task = TaskList.UI.Services.Models.Task;
 
-namespace TaskList.Data.Validation
+namespace TaskList.UI.Services.Validation
 {
     public class ModelValidation
     {
@@ -53,13 +52,17 @@ namespace TaskList.Data.Validation
         {
             List<string> validationErrors = new();
 
-            folder.FolderName = ModelValidation.GetCapitalizedFolderName(folder.FolderName);
+            folder.FolderName = GetCapitalizedFolderName(folder.FolderName);
 
             if (IsFolderOrTaskNameNoMoreThanDbAllowedLength(folder.FolderName))
                 validationErrors.Add("Max length for folder name is 100 characters.");
             if (IsRequiredStringValid(folder.FolderName))
                 validationErrors.Add("Folder name cannot be null, empty string, or whitespace.");
-            if (IsNewFolderNameUnique(folder.FolderName, new TasklistContext().Folders.Select(f => f.FolderName).ToList()))
+            
+            FolderService fs = new();
+            List<Folder> folders = new();
+            folders = fs.GetAll();
+            if (IsNewFolderNameUnique(folder.FolderName, folders.Select(f => f.FolderName).ToList()))
                 validationErrors.Add("Specified folder name is already used.");
 
             if (validationErrors.Any())

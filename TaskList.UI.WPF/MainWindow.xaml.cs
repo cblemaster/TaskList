@@ -6,6 +6,21 @@ using System.Windows.Controls;
 using TaskList.UI.Services;
 using TaskList.UI.Services.Models;
 
+// TODO:
+// 1. Hide rename/delete buttons except for selected row in folder list
+// 2. Move model validation to UI; tests will also need to be fixed up
+//      2.a. UI will call validation methods, display any errors
+// 3. Add folder functionality
+// 4. Rename folder functionality
+// 5. Delete folder functionality
+// 6. Add task functionality
+//      6.a. 'Tasks' is the default folder for new tasks created from:
+//              'Planned', 'Complete', 'Important', 'Recurring'
+//              OR if folder name not specified; add this to validation 
+// 7. Edit task functionality
+// 8. Delete task functionality
+// REMEMBER: Cascading updates and deletes are ON
+
 namespace TaskList.UI.WPF
 {
     /// <summary>
