@@ -10,7 +10,7 @@ namespace TaskList.UI.Services
         private readonly static string API_BASE_URL = "https://localhost:7086/";
         private readonly RestClient client = new(API_BASE_URL);
 
-        public Folder GetById (int id)
+        public Folder GetById(int id)
         {
             RestRequest request = new("Folder/{id}", Method.Get);
             request.AddParameter("id", id);
@@ -25,7 +25,7 @@ namespace TaskList.UI.Services
             return response.Data!;
         }
 
-        public Folder GetByFolderName (string folderName)
+        public Folder GetByFolderName(string folderName)
         {
             RestRequest request = new("Folder/{folderName}", Method.Get);
             request.AddParameter("folderName", folderName);
@@ -33,7 +33,7 @@ namespace TaskList.UI.Services
             return response.Data!;
         }
 
-        public Folder Create (NewFolder newFolder)
+        public Folder Create(NewFolder newFolder)
         {
             RestRequest request = new("Folder", Method.Post) { RequestFormat = DataFormat.Json };
             request.AddBody(newFolder);
@@ -41,15 +41,15 @@ namespace TaskList.UI.Services
             return response.Data!;
         }
 
-        public bool Delete (int id)
+        public bool Delete(int id)
         {
             RestRequest request = new("Folder/{id}", Method.Delete);
-            request.AddParameter("id", id);
+            request.AddParameter("id", id, ParameterType.UrlSegment);
             RestResponse<bool> response = client.Execute<bool>(request);
             return response.Data;
         }
 
-        public Folder Update (int id, ModifiedFolder modifiedFolder)
+        public Folder Update(int id, ModifiedFolder modifiedFolder)
         {
             RestRequest request = new("Folder/{id}", Method.Put) { RequestFormat = DataFormat.Json };
             request.AddParameter("id", id);

@@ -10,11 +10,15 @@ namespace TaskList.UI.Services.Validation
 
         public static string GetCapitalizedFolderName(string folderName)
         {
-            string firstChar = folderName[0].ToString();
+            if (IsRequiredStringValid(folderName))
+            {
+                string firstChar = folderName[0].ToString();
 
-            if (firstChar.ToUpper() == folderName[0].ToString())
-                return folderName;
-            return string.Concat(firstChar.ToUpper(), folderName.AsSpan(1));
+                if (firstChar.ToUpper() == folderName[0].ToString())
+                    return folderName;
+                return string.Concat(firstChar.ToUpper(), folderName.AsSpan(1));
+            }
+            return string.Empty;
         }
 
         public static bool IsDueDateTodayOrFuture(DateTime? dueDate)
@@ -48,21 +52,21 @@ namespace TaskList.UI.Services.Validation
                 return (true, validationErrors);
         }
 
-        public static (bool isValid, List<string> validationErrors) ValidateFolder(Folder folder)
+        public static (bool isValid, List<string> validationErrors) ValidateFolder(NewFolder newFolder)
         {
             List<string> validationErrors = new();
 
-            folder.FolderName = GetCapitalizedFolderName(folder.FolderName);
+            newFolder.FolderName = GetCapitalizedFolderName(newFolder.FolderName);
 
-            if (IsFolderOrTaskNameNoMoreThanDbAllowedLength(folder.FolderName))
+            if (!IsFolderOrTaskNameNoMoreThanDbAllowedLength(newFolder.FolderName))
                 validationErrors.Add("Max length for folder name is 100 characters.");
-            if (IsRequiredStringValid(folder.FolderName))
+            if (!IsRequiredStringValid(newFolder.FolderName))
                 validationErrors.Add("Folder name cannot be null, empty string, or whitespace.");
-            
+
             FolderService fs = new();
             List<Folder> folders = new();
             folders = fs.GetAll();
-            if (IsNewFolderNameUnique(folder.FolderName, folders.Select(f => f.FolderName).ToList()))
+            if (!IsNewFolderNameUnique(newFolder.FolderName, folders.Select(f => f.FolderName).ToList()))
                 validationErrors.Add("Specified folder name is already used.");
 
             if (validationErrors.Any())
