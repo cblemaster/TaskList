@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AddFolder.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="AddFolder.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TaskList.UI.Services\TaskList.UI.Services.csproj" />
   </ItemGroup>
 

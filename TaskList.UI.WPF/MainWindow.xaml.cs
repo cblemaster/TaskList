@@ -32,13 +32,13 @@ namespace TaskList.UI.WPF
         {
             InitializeComponent();
 
-            this.TaskDetailsGrid.Visibility = Visibility.Collapsed;
-            this.btnEditTask.Visibility = Visibility.Collapsed;
-            this.btnDeleteTask.Visibility = Visibility.Collapsed;
+            //this.TaskDetailsGrid.Visibility = Visibility.Collapsed;
+            //this.btnEditTask.Visibility = Visibility.Collapsed;
+            //this.btnDeleteTask.Visibility = Visibility.Collapsed;
 
-            FolderService fs = new();
-            List<Folder> folders = fs.GetAll();
-            this.FolderList.ItemsSource = folders;
+            //FolderService fs = new();
+            //List<Folder> folders = fs.GetAll();
+            //this.FolderList.ItemsSource = folders;
         }
 
         private void FolderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,11 +68,11 @@ namespace TaskList.UI.WPF
             //    }
             //}
             
-            this.TaskDetailsGrid.Visibility = Visibility.Collapsed;
-            this.btnEditTask.Visibility = Visibility.Collapsed;
-            this.btnDeleteTask.Visibility = Visibility.Collapsed;
+            //this.TaskDetailsGrid.Visibility = Visibility.Collapsed;
+            //this.btnEditTask.Visibility = Visibility.Collapsed;
+            //this.btnDeleteTask.Visibility = Visibility.Collapsed;
 
-            this.TaskList.SelectedItem = null;
+            //this.TaskList.SelectedItem = null;
 
             if (e.AddedItems.Count > 0)
             {
@@ -88,7 +88,7 @@ namespace TaskList.UI.WPF
                     _ => selectedFolder.Tasks.ToList(),
                 };
 
-                this.TaskList.ItemsSource = tasks;
+                //this.TaskList.ItemsSource = tasks;
             }            
         }
 
@@ -98,17 +98,17 @@ namespace TaskList.UI.WPF
             {
                 Task selectedTask = (Task)e.AddedItems[0]!;
 
-                this.TaskDetailsGrid.Visibility = Visibility.Visible;
-                this.btnEditTask.Visibility = Visibility.Visible;
-                this.btnDeleteTask.Visibility = Visibility.Visible;
+                //this.TaskDetailsGrid.Visibility = Visibility.Visible;
+                //this.btnEditTask.Visibility = Visibility.Visible;
+                //this.btnDeleteTask.Visibility = Visibility.Visible;
 
-                tbTaskId.Text = selectedTask.Id.ToString();
-                tbTaskName.Text = selectedTask.TaskName;
-                tbDueDate.Text = selectedTask.DueDate == null ? string.Empty : ((DateTime)selectedTask.DueDate).ToString("d");
-                tbRecurrence.Text = selectedTask.Recurrence.ToString();
-                cbImportant.IsChecked = selectedTask.IsImportant;
-                cbComplete.IsChecked = selectedTask.IsComplete;
-                tbNote.Text = selectedTask.Note ?? string.Empty;
+                //tbTaskId.Text = selectedTask.Id.ToString();
+                //tbTaskName.Text = selectedTask.TaskName;
+                //tbDueDate.Text = selectedTask.DueDate == null ? string.Empty : ((DateTime)selectedTask.DueDate).ToString("d");
+                //tbRecurrence.Text = selectedTask.Recurrence.ToString();
+                //cbImportant.IsChecked = selectedTask.IsImportant;
+                //cbComplete.IsChecked = selectedTask.IsComplete;
+                //tbNote.Text = selectedTask.Note ?? string.Empty;
             }
         }
 
@@ -125,19 +125,19 @@ namespace TaskList.UI.WPF
             };
             cfd.ShowDialog();
 
-            FolderService fs = new();
-            List<Folder> folders = fs.GetAll();
-            this.FolderList.ItemsSource = folders;
+            //FolderService fs = new();
+            //List<Folder> folders = fs.GetAll();
+            //this.FolderList.ItemsSource = folders;
         }
 
         private void btnAddFolder_Click(object sender, RoutedEventArgs e)
         {
-            AddFolder af = new();
-            af.ShowDialog();
+            //AddFolder af = new();
+            //af.ShowDialog();
 
-            FolderService fs = new();
-            List<Folder> folders = fs.GetAll();
-            this.FolderList.ItemsSource = folders;
+            //FolderService fs = new();
+            //List<Folder> folders = fs.GetAll();
+            //this.FolderList.ItemsSource = folders;
         }
 
         private void btnAddTask_Click(object sender, RoutedEventArgs e)

@@ -13,7 +13,7 @@ namespace TaskList.UI.Services
         public Folder GetById(int id)
         {
             RestRequest request = new("Folder/{id}", Method.Get);
-            request.AddParameter("id", id);
+            request.AddParameter("id", id, ParameterType.UrlSegment);
             RestResponse<Folder> response = client.Execute<Folder>(request);
             return response.Data!;
         }
@@ -33,7 +33,7 @@ namespace TaskList.UI.Services
             return response.Data!;
         }
 
-        public Folder Create(NewFolder newFolder)
+        public Folder Create(Folder newFolder)
         {
             RestRequest request = new("Folder", Method.Post) { RequestFormat = DataFormat.Json };
             request.AddBody(newFolder);
@@ -49,10 +49,10 @@ namespace TaskList.UI.Services
             return response.Data;
         }
 
-        public Folder Update(int id, ModifiedFolder modifiedFolder)
+        public Folder Update(Folder modifiedFolder)
         {
             RestRequest request = new("Folder/{id}", Method.Put) { RequestFormat = DataFormat.Json };
-            request.AddParameter("id", id);
+            request.AddParameter("id", modifiedFolder.Id);
             request.AddBody(modifiedFolder);
             RestResponse<Folder> response = client.Execute<Folder>(request);
             return response.Data!;

@@ -52,7 +52,7 @@ namespace TaskList.UI.Services.Validation
                 return (true, validationErrors);
         }
 
-        public static (bool isValid, List<string> validationErrors) ValidateFolder(NewFolder newFolder)
+        public static (bool isValid, List<string> validationErrors) ValidateFolder(Folder newFolder)
         {
             List<string> validationErrors = new();
 

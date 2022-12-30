@@ -9,15 +9,15 @@
         public ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 
-    public class NewFolder
-    {
-        public string FolderName { get; set; } = null!;
-    }
+    //public class NewFolder
+    //{
+    //    public string FolderName { get; set; } = null!;
+    //}
 
-    public class ModifiedFolder
-    {
-        public int Id { get; set; }
+    //public class ModifiedFolder
+    //{
+    //    public int Id { get; set; }
 
-        public string FolderName { get; set; } = null!;
-    }
+    //    public string FolderName { get; set; } = null!;
+    //}
 }

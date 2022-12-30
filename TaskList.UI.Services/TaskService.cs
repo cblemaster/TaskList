@@ -63,10 +63,10 @@ namespace TaskList.UI.Services
             return response.Data;
         }
 
-        public Task Update(int id, ModifiedTask modifiedTask)
+        public Task Update(ModifiedTask modifiedTask)
         {
             RestRequest request = new("Task/{id}", Method.Put) { RequestFormat = DataFormat.Json };
-            request.AddParameter("id", id);
+            request.AddParameter("id", modifiedTask.Id);
             request.AddBody(modifiedTask);
             RestResponse<Task> response = client.Execute<Task>(request);
             return response.Data!;

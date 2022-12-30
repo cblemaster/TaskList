@@ -1,0 +1,158 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskList.UI.WPF.Folders"
+             x:Class="TaskList.UI.WPF.Folders.FolderListView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:FolderListViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid x:Name="mainGrid"
+              HorizontalAlignment="Left" 
+              VerticalAlignment="Top" 
+              Margin="10 10 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <ListView
+                x:Name="folderList"
+                Grid.Row="0"
+                Grid.Column="0"
+                SelectionMode="Single" 
+                Margin="10 10 10 10"
+                ItemsSource="{Binding Folders}"
+                Width="auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Margin="10 10 10 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding FolderName}"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center" />
+                            <Button Content="Rename"
+                                    x:Name="btnRename"
+                                    Grid.Column="1"
+                                    Background="Transparent" 
+                                    Foreground="CornflowerBlue" 
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="3 3 3 3"
+                                    Visibility="Collapsed"
+                                    Click="btnRename_Click" />
+                            <Button Content="Delete"
+                                    x:Name="btnDelete"
+                                    Grid.Column="2"
+                                    Background="Transparent" 
+                                    Foreground="CornflowerBlue" 
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="3 3 3 3" 
+                                    Visibility="Collapsed" 
+                                    Click="btnDelete_Click"/>
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
+                                Value="True">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Planned">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Completed">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Recurring">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Important">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Tasks">
+                                <Setter TargetName="btnRename"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
+                                         Value="True">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Planned">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Completed">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Recurring">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Important">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=FolderName}"
+                                         Value="Tasks">
+                                <Setter TargetName="btnDelete"
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnAddFolder"
+                    Content="Add folder"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Background="Transparent" 
+                    Foreground="CornflowerBlue" 
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    Margin="10 3 3 3"
+                    Click="btnAddFolder_Click" />
+        </Grid>
+    </Grid>
+</UserControl>
