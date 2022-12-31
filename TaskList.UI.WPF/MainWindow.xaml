@@ -1,12 +1,11 @@
-﻿<!--https://stackoverflow.com/questions/8169005/using-styles-within-a-data-template-->
-
-<Window x:Class="TaskList.UI.WPF.MainWindow"
+﻿<Window x:Class="TaskList.UI.WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskList.UI.WPF"
         xmlns:local2="clr-namespace:TaskList.UI.WPF.Folders"
+        xmlns:local3="clr-namespace:TaskList.UI.WPF.Tasks"
         mc:Ignorable="d"
         Title="TaskList WPF" Height="550" Width="980">
     <Grid>
@@ -166,8 +165,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <local2:FolderListView Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
-            <local2:FolderAddView Grid.Column="1" Grid.Row="0" />
-            <local2:FolderRenameView Grid.Column="1" Grid.Row="1" />
+            <local3:TaskAddView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+            <local3:TaskEditView Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
         </Grid>
     </Grid>
 </Window>

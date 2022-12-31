@@ -1,12 +1,210 @@
-﻿<UserControl x:Class="TaskList.UI.WPF.Tasks.TaskEditView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskList.UI.WPF.Tasks"
+             x:Class="TaskList.UI.WPF.Tasks.TaskEditView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.DataContext>
+        <local:TaskEditViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid x:Name="mainGrid"
+              HorizontalAlignment="Left" 
+              VerticalAlignment="Top" 
+              Margin="10 10 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Label x:Name="lblTaskName"
+                   Content="Task Name:"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3" 
+                   Height="27" 
+                   Padding="0 0 0 0" />
+            <Label x:Name="lblDueDate"
+                   Content="Due Date:"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3"
+                   Height="27"
+                   Padding="0 0 0 0" />
+            <Label x:Name="lblRecurrence"
+                   Content="Recurrence:"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3"
+                   Height="27" 
+                   Padding="0 0 0 0" />
+            <Label x:Name="lblImportant"
+                   Content="Important:"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3" 
+                   Height="27"
+                   Padding="0 0 0 0"/>
+            <Label x:Name="lblComplete"
+                   Content="Complete:"
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3" 
+                   Height="27"
+                   Padding="0 0 0 0"/>
+            <Label x:Name="lblNote"
+                   Content="Note:"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Top"
+                   Margin="3 3 3 3"
+                   Height="27"
+                   Padding="0 0 0 0" />
+            <TextBox x:Name="tbTaskName"
+                     Text="{Binding Task.TaskName}"
+                     Grid.Row="0"
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Top"
+                     Height="27"
+                     Margin="3 3 3 3"
+                     Width="170"
+                     Padding="0 0 0 0" />
+            <DatePicker x:Name="dpDueDate"
+                        SelectedDate="{Binding Task.DueDate.Value}"
+                        FirstDayOfWeek="Monday"
+                        SelectedDateFormat="Short"
+                        IsTodayHighlighted="True"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Top"
+                        Height="27"
+                        Margin="3 3 3 3"
+                        Width="170"
+                        Padding="0 0 0 0" />
+            <ComboBox x:Name="cbRecurrence"
+                      SelectedItem="{Binding Task.Recurrence, Mode=OneWay}"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Height="27"
+                      Margin="3 3 3 3"
+                      Width="170"
+                      Padding="0 0 0 0">
+                <ComboBoxItem IsSelected="True" Content="None" />
+                <ComboBoxItem Content="Daily" />
+                <ComboBoxItem Content="Weekdays" />
+                <ComboBoxItem Content="Weekly" />
+                <ComboBoxItem Content="Monthly" />
+                <ComboBoxItem Content="Annually" />
+                <ComboBoxItem Content="Custom" />
+            </ComboBox>
+            <CheckBox x:Name="cbImportant"
+                      IsChecked="{Binding Task.IsImportant}"
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Left"
+                      VerticalContentAlignment="Top"
+                      Margin="3 3 3 3" 
+                      Padding="0 0 0 0" />
+            <CheckBox x:Name="cbComplete"
+                      IsChecked="{Binding Task.IsComplete}"
+                      Grid.Row="4"
+                      Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Left"
+                      VerticalContentAlignment="Top"
+                      Margin="3 3 3 3" 
+                      Padding="0 0 0 0" />
+            <TextBox x:Name="tbNote"
+                     Text="{Binding Task.Note}"
+                     Grid.Row="5"
+                     Grid.Column="1" 
+                     Grid.RowSpan="2"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Height="54"
+                     Margin="3 3 3 3"
+                     Width="170"
+                     Padding="0 0 0 0" />
+            <Grid x:Name="buttonGrid"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Margin="3 3 3 3"
+                  Grid.Column="1"
+                  Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Button x:Name="btnUpdate"
+                        Content="Update"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Background="Transparent" 
+                        Foreground="CornflowerBlue" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        Margin="3 3 3 3"
+                        Click="btnUpdate_Click" />
+                <Button x:Name="btnCancel"
+                        Content="Cancel"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Background="Transparent" 
+                        Foreground="CornflowerBlue" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        Margin="10 3 3 3"
+                        Click="btnCancel_Click"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

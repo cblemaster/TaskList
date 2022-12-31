@@ -14,7 +14,7 @@ namespace TaskList.UI.Services
         public Task GetById(int id)
         {
             RestRequest request = new("Task/{id}", Method.Get);
-            request.AddParameter("id", id);
+            request.AddParameter("id", id, ParameterType.UrlSegment);
             RestResponse<Task> response = client.Execute<Task>(request);
             return response.Data!;
         }
@@ -47,7 +47,7 @@ namespace TaskList.UI.Services
             return response.Data!;
         }
 
-        public Task Create(NewTask newTask)
+        public Task Create(Task newTask)
         {
             RestRequest request = new("Task", Method.Post) { RequestFormat = DataFormat.Json };
             request.AddBody(newTask);
@@ -63,7 +63,7 @@ namespace TaskList.UI.Services
             return response.Data;
         }
 
-        public Task Update(ModifiedTask modifiedTask)
+        public Task Update(Task modifiedTask)
         {
             RestRequest request = new("Task/{id}", Method.Put) { RequestFormat = DataFormat.Json };
             request.AddParameter("id", modifiedTask.Id);

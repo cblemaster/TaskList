@@ -25,45 +25,45 @@
         public bool IsRecurring => this.Recurrence != Recurrence.None;
     }
 
-    public class NewTask
-    {
-        public string TaskName { get; set; } = null!;
+    //public class NewTask
+    //{
+    //    public string TaskName { get; set; } = null!;
 
-        public DateTime? DueDate { get; set; }
+    //    public DateTime? DueDate { get; set; }
 
-        public int RecurrenceId { get; set; }
+    //    public int RecurrenceId { get; set; }
 
-        public bool IsImportant { get; set; }
+    //    public bool IsImportant { get; set; }
 
-        public bool IsComplete { get; set; }
+    //    public bool IsComplete { get; set; }
 
-        public int FolderId { get; set; }
+    //    public int FolderId { get; set; }
 
-        public string? Note { get; set; }
+    //    public string? Note { get; set; }
 
-        public Folder Folder { get; set; } = null!;
-    }
+    //    public Folder Folder { get; set; } = null!;
+    //}
 
-    public class ModifiedTask
-    {
-        public int Id { get; set; }
+    //public class ModifiedTask
+    //{
+    //    public int Id { get; set; }
 
-        public string TaskName { get; set; } = null!;
+    //    public string TaskName { get; set; } = null!;
 
-        public DateTime? DueDate { get; set; }
+    //    public DateTime? DueDate { get; set; }
 
-        public int RecurrenceId { get; set; }
+    //    public int RecurrenceId { get; set; }
 
-        public bool IsImportant { get; set; }
+    //    public bool IsImportant { get; set; }
 
-        public bool IsComplete { get; set; }
+    //    public bool IsComplete { get; set; }
 
-        public int FolderId { get; set; }
+    //    public int FolderId { get; set; }
 
-        public string? Note { get; set; }
+    //    public string? Note { get; set; }
 
-        public Folder Folder { get; set; } = null!;
-    }
+    //    public Folder Folder { get; set; } = null!;
+    //}
 
     public enum Recurrence
     {

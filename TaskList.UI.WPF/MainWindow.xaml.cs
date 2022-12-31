@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using TaskList.UI.Services;
-using TaskList.UI.Services.Models;
 
 // TODO:
-// 1. Add folder - TESTING, including validation
-// 2. Delete folder - TESTING
-// 3. Rename folder - code, then TESTING, including validation
-// 4. Add task - code, then TESTING, including validation
-//      4.a. 'Tasks' is the default folder for new tasks created from:
-//              'Planned', 'Completed', 'Important', 'Recurring'
-//              OR if folder name not specified; add this to validation
-// 5. Delete task - code, then TESTING
-// 6. Edit task - code, then TESTING, including validation
-// 7. (UI will call validation methods, display any errors)
-// 8. Hide rename/delete buttons in folder list except for selected row in folder list
-// 9. Hide rename/delete buttons in folder list ALWAYS for folders: Important, Completed, Recurring, Planned, Tasks
-// 10. REMEMBER: Cascading updates and deletes are ON
+// 1. TaskEditView - fix datepicker to bind to due date correctly
+// 2. TaskEditView - fix combobox to bind to recurrence correctly
+// 3. TaskListView - view, code behind, viewmodel
+// 4. FolderDeleteView - view, code behind, viewmodel
+// 5. TaskDeleteView - view, code behind, viewmodel
+// 6. (UI will call validation methods, display any errors)
+// 7. Put everything together
+// 8. REMEMBER: Cascading updates and deletes are ON
 
 namespace TaskList.UI.WPF
 {
@@ -74,29 +64,29 @@ namespace TaskList.UI.WPF
 
             //this.TaskList.SelectedItem = null;
 
-            if (e.AddedItems.Count > 0)
-            {
-                TaskService ts = new();
+            //if (e.AddedItems.Count > 0)
+            //{
+            //    TaskService ts = new();
 
-                Folder selectedFolder = (Folder)e.AddedItems[0]!;
-                List<Task> tasks = selectedFolder.FolderName switch
-                {
-                    "Important" => ts.GetImportant().ToList(),
-                    "Completed" => ts.GetCompleted().ToList(),
-                    "Recurring" => ts.GetRecurring().ToList(),
-                    "Planned" => ts.GetPlanned().ToList(),
-                    _ => selectedFolder.Tasks.ToList(),
-                };
+            //    Folder selectedFolder = (Folder)e.AddedItems[0]!;
+            //    List<Task> tasks = selectedFolder.FolderName switch
+            //    {
+            //        "Important" => ts.GetImportant().ToList(),
+            //        "Completed" => ts.GetCompleted().ToList(),
+            //        "Recurring" => ts.GetRecurring().ToList(),
+            //        "Planned" => ts.GetPlanned().ToList(),
+            //        _ => selectedFolder.Tasks.ToList(),
+            //    };
 
-                //this.TaskList.ItemsSource = tasks;
-            }            
+            //    //this.TaskList.ItemsSource = tasks;
+            //}
         }
 
         private void TaskList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
-            {
-                Task selectedTask = (Task)e.AddedItems[0]!;
+            //if (e.AddedItems.Count > 0)
+            //{
+            //    Task selectedTask = (Task)e.AddedItems[0]!;
 
                 //this.TaskDetailsGrid.Visibility = Visibility.Visible;
                 //this.btnEditTask.Visibility = Visibility.Visible;
@@ -109,21 +99,21 @@ namespace TaskList.UI.WPF
                 //cbImportant.IsChecked = selectedTask.IsImportant;
                 //cbComplete.IsChecked = selectedTask.IsComplete;
                 //tbNote.Text = selectedTask.Note ?? string.Empty;
-            }
+            //}
         }
 
-        private void btnRenameFolder_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnRenameFolder_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void btnDeleteFolder_Click(object sender, RoutedEventArgs e)
         {
-            ConfirmFolderDelete cfd = new()
-            {
-                Tag = ((Folder)(((Button)e.OriginalSource).DataContext)).Id
-            };
-            cfd.ShowDialog();
+            //ConfirmFolderDelete cfd = new()
+            //{
+            //    Tag = ((Folder)(((Button)e.OriginalSource).DataContext)).Id
+            //};
+            //cfd.ShowDialog();
 
             //FolderService fs = new();
             //List<Folder> folders = fs.GetAll();
@@ -140,20 +130,20 @@ namespace TaskList.UI.WPF
             //this.FolderList.ItemsSource = folders;
         }
 
-        private void btnAddTask_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void btnEditTask_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnEditTask_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void btnDeleteTask_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnDeleteTask_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
 
     }

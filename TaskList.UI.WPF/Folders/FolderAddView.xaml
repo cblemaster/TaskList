@@ -23,12 +23,14 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <Label Content="Folder Name:"
+            <Label x:Name="lblFolderName" 
+                   Content="Folder Name:"
                    Grid.Column="0"
                    Grid.Row="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   Margin="3 3 3 3" />
+                   Margin="3 3 3 3" 
+                   Height="27" />
             <TextBox x:Name="tbFolderName"
                      Grid.Column="1"
                      Grid.Row="0"
@@ -36,7 +38,7 @@
                      VerticalAlignment="Center"
                      HorizontalContentAlignment="Left"
                      VerticalContentAlignment="Center"
-                     Height="23"
+                     Height="27"
                      Margin="3 3 3 3"
                      Width="170"
                      Text="{Binding FolderName}" />
