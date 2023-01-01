@@ -8,7 +8,7 @@ namespace TaskList.UI.WPF.Tasks
     {
         public TaskEditViewModel()
         {
-            GetTaskToEdit(12);
+            GetTaskToEdit(5);
         }
 
         private readonly TaskService _ts = new();

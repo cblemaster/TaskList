@@ -11,7 +11,7 @@ namespace TaskList.UI.WPF.Tasks
         public TaskEditView()
         {
             InitializeComponent();
-            this.dpDueDate.BlackoutDates.AddDatesInPast();
+            //this.dpDueDate.BlackoutDates.AddDatesInPast();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)

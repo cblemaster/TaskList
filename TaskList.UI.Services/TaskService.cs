@@ -1,5 +1,4 @@
 ﻿using RestSharp;
-using TaskList.UI.Services.Models;
 using Task = TaskList.UI.Services.Models.Task;
 
 namespace TaskList.UI.Services

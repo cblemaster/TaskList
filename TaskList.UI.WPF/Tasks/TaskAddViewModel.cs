@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskList.UI.Services;
+﻿using System.ComponentModel;
 using Task = TaskList.UI.Services.Models.Task;
 
 namespace TaskList.UI.WPF.Tasks

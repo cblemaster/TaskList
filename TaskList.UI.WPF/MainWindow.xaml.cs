@@ -2,13 +2,13 @@
 using System.Windows.Controls;
 
 // TODO:
-// 1. TaskEditView - fix datepicker to bind to due date correctly
-// 2. TaskEditView - fix combobox to bind to recurrence correctly
-// 3. TaskListView - view, code behind, viewmodel
-// 4. FolderDeleteView - view, code behind, viewmodel
-// 5. TaskDeleteView - view, code behind, viewmodel
-// 6. (UI will call validation methods, display any errors)
-// 7. Put everything together
+// 1. TaskListView - view, code behind, viewmodel
+// 2. FolderDeleteView - view, code behind, viewmodel
+// 3. TaskDeleteView - view, code behind, viewmodel
+// 4. (UI will call validation methods, display any errors)
+// 5. Put everything together
+// 6. Remove commented out code
+// 7. Look for TODOs
 // 8. REMEMBER: Cascading updates and deletes are ON
 
 namespace TaskList.UI.WPF
@@ -48,8 +48,8 @@ namespace TaskList.UI.WPF
             //                {
             //                    var g = (DataTemplate)ee.CellTemplate;
             //                    g.FindName("btnRename", c);
-                                
-                                
+
+
             //                    //var h = g.LoadContent();
             //                    //((Button)h).Visibility = Visibility.Visible;
             //                }
@@ -57,7 +57,7 @@ namespace TaskList.UI.WPF
             //        }
             //    }
             //}
-            
+
             //this.TaskDetailsGrid.Visibility = Visibility.Collapsed;
             //this.btnEditTask.Visibility = Visibility.Collapsed;
             //this.btnDeleteTask.Visibility = Visibility.Collapsed;
@@ -88,17 +88,17 @@ namespace TaskList.UI.WPF
             //{
             //    Task selectedTask = (Task)e.AddedItems[0]!;
 
-                //this.TaskDetailsGrid.Visibility = Visibility.Visible;
-                //this.btnEditTask.Visibility = Visibility.Visible;
-                //this.btnDeleteTask.Visibility = Visibility.Visible;
+            //this.TaskDetailsGrid.Visibility = Visibility.Visible;
+            //this.btnEditTask.Visibility = Visibility.Visible;
+            //this.btnDeleteTask.Visibility = Visibility.Visible;
 
-                //tbTaskId.Text = selectedTask.Id.ToString();
-                //tbTaskName.Text = selectedTask.TaskName;
-                //tbDueDate.Text = selectedTask.DueDate == null ? string.Empty : ((DateTime)selectedTask.DueDate).ToString("d");
-                //tbRecurrence.Text = selectedTask.Recurrence.ToString();
-                //cbImportant.IsChecked = selectedTask.IsImportant;
-                //cbComplete.IsChecked = selectedTask.IsComplete;
-                //tbNote.Text = selectedTask.Note ?? string.Empty;
+            //tbTaskId.Text = selectedTask.Id.ToString();
+            //tbTaskName.Text = selectedTask.TaskName;
+            //tbDueDate.Text = selectedTask.DueDate == null ? string.Empty : ((DateTime)selectedTask.DueDate).ToString("d");
+            //tbRecurrence.Text = selectedTask.Recurrence.ToString();
+            //cbImportant.IsChecked = selectedTask.IsImportant;
+            //cbComplete.IsChecked = selectedTask.IsComplete;
+            //tbNote.Text = selectedTask.Note ?? string.Empty;
             //}
         }
 

@@ -3,10 +3,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskList.UI.WPF.Tasks"
+             xmlns:local2="clr-namespace:TaskList.UI.Services.Models;assembly=TaskList.UI.Services"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="TaskList.UI.WPF.Tasks.TaskEditView"
              mc:Ignorable="d" 
              d:DesignHeight="300"
              d:DesignWidth="300">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="dataFromRecurrenceEnum"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local2:Recurrence"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <local:TaskEditViewModel />
     </UserControl.DataContext>
@@ -108,7 +119,8 @@
                      Width="170"
                      Padding="0 0 0 0" />
             <DatePicker x:Name="dpDueDate"
-                        SelectedDate="{Binding Task.DueDate.Value}"
+                        SelectedDate="{Binding Task.DueDate}"
+                        DisplayDate="{Binding ElementName=dpDueDate, Path=SelectedDate}"
                         FirstDayOfWeek="Monday"
                         SelectedDateFormat="Short"
                         IsTodayHighlighted="True"
@@ -131,15 +143,8 @@
                       Height="27"
                       Margin="3 3 3 3"
                       Width="170"
-                      Padding="0 0 0 0">
-                <ComboBoxItem IsSelected="True" Content="None" />
-                <ComboBoxItem Content="Daily" />
-                <ComboBoxItem Content="Weekdays" />
-                <ComboBoxItem Content="Weekly" />
-                <ComboBoxItem Content="Monthly" />
-                <ComboBoxItem Content="Annually" />
-                <ComboBoxItem Content="Custom" />
-            </ComboBox>
+                      Padding="0 0 0 0"
+                      ItemsSource="{Binding Source={StaticResource dataFromRecurrenceEnum}}" />
             <CheckBox x:Name="cbImportant"
                       IsChecked="{Binding Task.IsImportant}"
                       Grid.Row="3"

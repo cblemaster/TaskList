@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using TaskList.UI.Services;
 using TaskList.UI.Services.Models;
 
 namespace TaskList.UI.WPF.Folders
@@ -10,10 +9,10 @@ namespace TaskList.UI.WPF.Folders
         {
             this.Folder = new();
         }
-        
+
         //private readonly FolderService _fs = new();
         private Folder _folder = new();
-        
+
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
         public Folder Folder
         {
