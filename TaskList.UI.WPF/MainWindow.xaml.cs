@@ -2,14 +2,13 @@
 using System.Windows.Controls;
 
 // TODO:
-// 1. TaskListView - view, code behind, viewmodel
-// 2. FolderDeleteView - view, code behind, viewmodel
-// 3. TaskDeleteView - view, code behind, viewmodel
+// 1. FolderDeleteView - view, code behind, viewmodel
+// 2. TaskDeleteView - view, code behind, viewmodel
+// 3. Put everything together
 // 4. (UI will call validation methods, display any errors)
-// 5. Put everything together
-// 6. Remove commented out code
-// 7. Look for TODOs
-// 8. REMEMBER: Cascading updates and deletes are ON
+// 5. Remove commented out code
+// 6. Look for TODOs
+// 7. REMEMBER: Cascading updates and deletes are ON
 
 namespace TaskList.UI.WPF
 {

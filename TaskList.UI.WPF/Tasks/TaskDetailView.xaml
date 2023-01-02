@@ -27,7 +27,14 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
+            <Border BorderBrush="CornflowerBlue"
+                    BorderThickness="1"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.RowSpan="7"
+                    Grid.ColumnSpan="2"/>
             <Label x:Name="lblTaskName"
                    Content="Task Name:"
                    Grid.Row="0"
@@ -157,6 +164,40 @@
                        Margin="3 3 3 3"
                        Width="170"
                        Padding="0 0 0 0" />
+            <Grid x:Name="buttonGrid"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Margin="3 3 3 3"
+                  Grid.Column="1"
+                  Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Button x:Name="btnEdit"
+                        Content="Edit"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Background="Transparent" 
+                        Foreground="CornflowerBlue" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        Margin="3 3 3 3"
+                        Click="btnEdit_Click" />
+                <Button x:Name="btnDelete"
+                        Content="Delete"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Background="Transparent" 
+                        Foreground="CornflowerBlue" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        Margin="10 3 3 3"
+                        Click="btnDelete_Click"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

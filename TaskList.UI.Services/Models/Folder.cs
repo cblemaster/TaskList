@@ -6,6 +6,11 @@
 
         public string FolderName { get; set; } = null!;
 
+        public bool CanBeDeletedOrRenamed =>
+            !(new List<string>() 
+            { "important", "completed", "recurring", "planned", "tasks" }
+            .Contains(this.FolderName.ToLower()));
+
         public ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 

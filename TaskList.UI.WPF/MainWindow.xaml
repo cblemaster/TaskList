@@ -3,170 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TaskList.UI.WPF"
-        xmlns:local2="clr-namespace:TaskList.UI.WPF.Folders"
-        xmlns:local3="clr-namespace:TaskList.UI.WPF.Tasks"
+        xmlns:localf="clr-namespace:TaskList.UI.WPF.Folders"
+        xmlns:localt="clr-namespace:TaskList.UI.WPF.Tasks"
         mc:Ignorable="d"
-        Title="TaskList WPF" Height="550" Width="980">
-    <Grid>
-        <!--<Grid Margin="10" x:Name="MainGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="4*" />
-            </Grid.ColumnDefinitions>
-            <ListView Grid.Row="0" Grid.Column="0" x:Name="FolderList" SelectionChanged="FolderList_SelectionChanged" 
-                      SelectionMode="Single">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FolderName }" Width="auto" Header="Folder name" />
-                        <GridViewColumn Width="auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Rename" x:Name="btnRenameFolder" Click="btnRenameFolder_Click" 
-                                            Background="Transparent" Foreground="CornflowerBlue" BorderThickness="0"
-                                            Visibility="Collapsed" />
-                                    <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                            AncestorType={x:Type ListViewItem}}}" Value="True">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Planned">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Completed">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Recurring">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Important">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Tasks">
-                                            <Setter TargetName="btnRenameFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Delete" x:Name="btnDeleteFolder" Click="btnDeleteFolder_Click" 
-                                            Background="Transparent" Foreground="CornflowerBlue" BorderThickness="0"
-                                            Visibility="Collapsed" />
-                                    <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                            AncestorType={x:Type ListViewItem}}}" Value="True">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Planned">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Completed">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Recurring">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Important">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=FolderName}" Value="Tasks">
-                                            <Setter TargetName="btnDeleteFolder" Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Grid.Row="0" Grid.Column="1" x:Name="TaskList" SelectionChanged="TaskList_SelectionChanged" 
-                      SelectionMode="Single">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=TaskName}" Header="Task name" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" 
-                                        Header="Due date" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Border BorderThickness="1 1 1 1" Grid.Row="0" Grid.Column="2" Height="auto" Width="auto" BorderBrush="#FF828790">
-                <Grid x:Name="TaskDetailsGrid" Grid.Row="0" Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*" />
-                        <ColumnDefinition Width="7*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-                        <TextBlock Visibility="Collapsed" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Task Name:" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Due Date:" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Recurrence:" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Important" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Complete" Padding="5 5 5 5" Height="30" />
-                        <TextBlock Text="Note:" Padding="5 5 5 5" Height="30" />
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-                        <TextBlock x:Name="tbTaskId" Visibility="Collapsed" Padding="5 5 5 5" Height="30" />
-                        <TextBlock x:Name="tbTaskName" Padding="5 5 5 5" Height="30" />
-                        <TextBlock x:Name="tbDueDate" Padding="5 5 5 5" Height="30" />
-                        <TextBlock x:Name="tbRecurrence" Padding="5 5 5 5" Height="30" />
-                        <CheckBox x:Name="cbImportant" IsEnabled="False" Padding="5 5 5 5" VerticalContentAlignment="Center" Height="30" />
-                        <CheckBox x:Name="cbComplete" IsEnabled="False" Padding="5 5 5 5" VerticalContentAlignment="Center" Height="30" />
-                        <TextBlock x:Name="tbNote" Padding="5 5 5 5" Height="30" />
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Button x:Name="btnAddFolder" Click="btnAddFolder_Click" Content="Add Folder" Background="Transparent" 
-                    Foreground="CornflowerBlue" BorderThickness="0" Grid.Column="0" Grid.Row="1" Width="60" 
-                    HorizontalAlignment="Left" Margin="0 10 0 0" />
-            <Button x:Name="btnAddTask" Click="btnAddTask_Click" Content="Add Task" Background="Transparent" 
-                    Foreground="CornflowerBlue" BorderThickness="0" Grid.Column="1" Grid.Row="1" Width="60" 
-                    HorizontalAlignment="Left" Margin="0 10 0 0" />
-            <Grid Grid.Row="1" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="btnEditTask" Click="btnEditTask_Click" Content="Edit Task" Background="Transparent" 
-                    Foreground="CornflowerBlue" BorderThickness="0" Grid.Column="0" Grid.Row="0" Width="60" 
-                    HorizontalAlignment="Left" Margin="0 10 0 0" />
-                <Button x:Name="btnDeleteTask" Click="btnDeleteTask_Click" Content="Delete Task" Background="Transparent" 
-                    Foreground="CornflowerBlue" BorderThickness="0" Grid.Column="1" Grid.Row="0" Width="60" 
-                    HorizontalAlignment="Left" Margin="10 10 0 0" />
-                <local2:FolderAddView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
-            </Grid>
-        </Grid>-->
-        <Grid x:Name="mainGrid"
-              HorizontalAlignment="Left" 
-              VerticalAlignment="Top" 
-              Margin="10 10 10 10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <local2:FolderListView Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
-            <local3:TaskAddView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
-            <local3:TaskEditView Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
-        </Grid>
+        Title="TaskList WPF" Height="550" Width="1150">
+    <Grid x:Name="mainGrid"
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch" 
+            Margin="10 10 10 10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="CornflowerBlue" 
+            BorderThickness="1 1 1 1"
+            Grid.Column="0" 
+            Grid.Row="0" />
+        <localf:FolderListView Grid.Column="0" 
+                            Grid.Row="0" />
+        <Border BorderBrush="CornflowerBlue" 
+            BorderThickness="0 1 1 1" 
+            Grid.Column="1" 
+            Grid.Row="0" />
+        <localt:TaskListView Grid.Column="1" 
+                            Grid.Row="0" />
+        <Border BorderBrush="CornflowerBlue" 
+            BorderThickness="0 1 1 1" 
+            Grid.Column="2" 
+            Grid.Row="0" />
+        <localt:TaskDetailView Grid.Column="2" 
+                            Grid.Row="0" 
+                            Margin="10 10 10 10" />
     </Grid>
 </Window>

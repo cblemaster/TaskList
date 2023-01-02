@@ -28,7 +28,8 @@
                       SelectionMode="Single" 
                       Margin="10 10 10 10"
                       ItemsSource="{Binding Folders}"
-                      Width="auto">
+                      Width="auto"
+                      BorderBrush="CornflowerBlue">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Left"
@@ -73,32 +74,8 @@
                                         Property="Visibility"
                                         Value="Visible" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Planned">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Completed">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Recurring">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Important">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Tasks">
+                            <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
+                                         Value="False">
                                 <Setter TargetName="btnRename"
                                         Property="Visibility"
                                         Value="Collapsed" />
@@ -109,32 +86,8 @@
                                         Property="Visibility"
                                         Value="Visible" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Planned">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Completed">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Recurring">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Important">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=FolderName}"
-                                         Value="Tasks">
+                            <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
+                                         Value="False">
                                 <Setter TargetName="btnDelete"
                                         Property="Visibility"
                                         Value="Collapsed" />

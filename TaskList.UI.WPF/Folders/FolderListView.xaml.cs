@@ -27,7 +27,5 @@ namespace TaskList.UI.WPF.Folders
         {
 
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace TaskList.UI.WPF.Tasks
 {
@@ -10,6 +11,16 @@ namespace TaskList.UI.WPF.Tasks
         public TaskDetailView()
         {
             InitializeComponent();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
