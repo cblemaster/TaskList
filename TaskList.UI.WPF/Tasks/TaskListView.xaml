@@ -22,34 +22,40 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <ListView x:Name="taskList"
-                      Grid.Row="0"
-                      Grid.Column="0"
-                      SelectionMode="Single" 
-                      Margin="10 10 10 10"
-                      ItemsSource="{Binding Tasks}"
-                      Width="auto"
-                      BorderBrush="CornflowerBlue">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              Margin="10 10 10 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="50" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tbTaskName"
-                                       Text="{Binding TaskName}"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock x:Name="tbDueDate"
-                                       Text="{Binding DueDate, StringFormat=d}"
-                                       Grid.Column="1" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel Grid.Row="0" 
+                        Grid.Column="0">
+                <TextBlock Text="List of tasks in selected folder"
+                           Foreground="CornflowerBlue"
+                           FontWeight="Bold" />
+                <ListView x:Name="taskList"
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          SelectionMode="Single" 
+                          Margin="10 10 10 10"
+                          ItemsSource="{Binding Tasks}"
+                          Width="auto"
+                          BorderBrush="CornflowerBlue">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Margin="10 10 10 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tbTaskName"
+                                           Text="{Binding TaskName}"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock x:Name="tbDueDate"
+                                           Text="{Binding DueDate, StringFormat=d}"
+                                           Grid.Column="1" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
             <Button x:Name="btnAddTask"
                     Content="Add task"
                     Grid.Column="0"

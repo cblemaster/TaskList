@@ -7,7 +7,7 @@
         public string FolderName { get; set; } = null!;
 
         public bool CanBeDeletedOrRenamed =>
-            !(new List<string>() 
+            !(new List<string>()
             { "important", "completed", "recurring", "planned", "tasks" }
             .Contains(this.FolderName.ToLower()));
 

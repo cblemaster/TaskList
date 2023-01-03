@@ -7,10 +7,9 @@ namespace TaskList.UI.WPF.Folders
     {
         public FolderAddViewModel()
         {
-            this.Folder = new();
+
         }
 
-        //private readonly FolderService _fs = new();
         private Folder _folder = new();
 
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };

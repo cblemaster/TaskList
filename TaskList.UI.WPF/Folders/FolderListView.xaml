@@ -22,80 +22,84 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <ListView x:Name="folderList"
-                      Grid.Row="0"
-                      Grid.Column="0"
-                      SelectionMode="Single" 
-                      Margin="10 10 10 10"
-                      ItemsSource="{Binding Folders}"
-                      Width="auto"
-                      BorderBrush="CornflowerBlue">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              Margin="10 10 10 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="50" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tbFolderName"
-                                       Text="{Binding FolderName}"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center" />
-                            <Button Content="Rename"
-                                    x:Name="btnRename"
-                                    Grid.Column="1"
-                                    Background="Transparent" 
-                                    Foreground="CornflowerBlue" 
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Margin="3 3 3 3"
-                                    Visibility="Collapsed"
-                                    Click="btnRename_Click" />
-                            <Button Content="Delete"
-                                    x:Name="btnDelete"
-                                    Grid.Column="2"
-                                    Background="Transparent" 
-                                    Foreground="CornflowerBlue" 
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Margin="3 3 3 3" 
-                                    Visibility="Collapsed" 
-                                    Click="btnDelete_Click"/>
-                        </Grid>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
-                                Value="True">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
-                                         Value="False">
-                                <Setter TargetName="btnRename"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
-                                         Value="True">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Visible" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
-                                         Value="False">
-                                <Setter TargetName="btnDelete"
-                                        Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel Grid.Row="0" 
+                        Grid.Column="0">
+                <TextBlock Text="Folder List"
+                           Foreground="CornflowerBlue"
+                           FontWeight="Bold" />
+                <ListView x:Name="folderList"
+                          SelectionMode="Single" 
+                          Margin="10 10 10 10"
+                          ItemsSource="{Binding Folders}"
+                          Width="auto"
+                          BorderBrush="CornflowerBlue">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Margin="10 10 10 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tbFolderName"
+                                           Text="{Binding FolderName}"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center" />
+                                <Button Content="Rename"
+                                        x:Name="btnRename"
+                                        Grid.Column="1"
+                                        Background="Transparent" 
+                                        Foreground="CornflowerBlue" 
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Margin="3 3 3 3"
+                                        Visibility="Collapsed"
+                                        Click="btnRename_Click" />
+                                <Button Content="Delete"
+                                        x:Name="btnDelete"
+                                        Grid.Column="2"
+                                        Background="Transparent" 
+                                        Foreground="CornflowerBlue" 
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Margin="3 3 3 3" 
+                                        Visibility="Collapsed" 
+                                        Click="btnDelete_Click"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
+                                             Value="True">
+                                    <Setter TargetName="btnRename"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
+                                             Value="False">
+                                    <Setter TargetName="btnRename"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
+                                             Value="True">
+                                    <Setter TargetName="btnDelete"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=CanBeDeletedOrRenamed}"
+                                             Value="False">
+                                    <Setter TargetName="btnDelete"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
             <Button x:Name="btnAddFolder"
                     Content="Add folder"
                     Grid.Column="0"

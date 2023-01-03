@@ -1,6 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using TaskList.UI.Services;
 using Task = TaskList.UI.Services.Models.Task;
 
 namespace TaskList.UI.WPF.Tasks
@@ -9,10 +9,14 @@ namespace TaskList.UI.WPF.Tasks
     {
         public TaskListViewModel()
         {
-            this.Tasks = new ObservableCollection<Task>(_ts.GetImportant());
+
         }
 
-        private readonly TaskService _ts = new();
+        public TaskListViewModel(List<Task> tasks)
+        {
+            this.Tasks = new ObservableCollection<Task>(tasks);
+        }
+
         private ObservableCollection<Task> _tasks = new();
 
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };

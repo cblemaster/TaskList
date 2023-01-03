@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using TaskList.UI.Services;
 using Task = TaskList.UI.Services.Models.Task;
 
 namespace TaskList.UI.WPF.Tasks
@@ -8,10 +7,9 @@ namespace TaskList.UI.WPF.Tasks
     {
         public TaskDetailViewModel()
         {
-            GetTask(11);
+
         }
 
-        private readonly TaskService _ts = new();
         private Task _task = new();
 
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
@@ -28,20 +26,5 @@ namespace TaskList.UI.WPF.Tasks
                 };
             }
         }
-
-        //public string RecurrenceAsString => this.Task.Recurrence.ToString();
-
-        private void GetTask(int id)
-        {
-            this.Task = _ts.GetById(id);
-        }
-
-        private void Save()
-        {
-            _ts.Update(Task);
-        }
-
-
-
     }
 }
